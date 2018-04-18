@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.calendar {
+    height: 50vh;
+    width: 80%;
+    min-width: 670px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+header{
+    font-size: 200%;
+    justify-content:space-around;
+    display: flex;
+    border: 1px solid black;
+    background: #ffbdbd;
+    height:calc(100% * (1/7) - 1px);
+}
+
+
+header>span{
+    align-self:center; 
+}
+
+.fa{
+    align-self:center;
+}
+
+.day{ 
+    height: 100%;
+    background-color: #e1f7d5;
+    border: 1px solid black;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+
+.day-header{
+    background: #c9c9ff;
+}
+
+.week {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height:calc(100% * (1/7) - 1px);
+}

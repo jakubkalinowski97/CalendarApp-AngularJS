@@ -1,0 +1,21 @@
+<div class="calendar">
+    <header>
+        <i class="fa fa-arrow-circle-left"></i>
+        <span>{{$ctrl.month.format("MMMM")}}</span>
+        <i ng-click="$ctrl.next()" class="fa fa-arrow-circle-right"></i>
+    </header>
+    <div class="week">
+        <span class="day day-header">Sunday</span>
+        <span class="day day-header">Monday</span>
+        <span class="day day-header">Thuesday</span>
+        <span class="day day-header">Wednesday</span>
+        <span class="day day-header">Thursday</span>
+        <span class="day day-header">Friday</span>
+        <span class="day day-header">Saturday</span>
+    </div>
+    <div class="week" ng-repeat="week in $ctrl.weeks">
+        <div class="day" ng-repeat="day in week.days">
+            <span>{{day.number}}</span>
+        </div>
+    </div>
+</div>
