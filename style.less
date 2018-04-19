@@ -2,50 +2,88 @@
     margin: 0;
     padding: 0;
 }
+html {
+    font-size: 20px;
+}
 
 .calendar {
-    height: 50vh;
-    width: 80%;
-    min-width: 670px;
+    font-family: 'Poiret One', cursive;
+    color: #D50000;
+    height: 800px;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
 }
 
 header{
-    font-size: 200%;
-    justify-content:space-around;
     display: flex;
     border: 1px solid black;
-    background: #ffbdbd;
+    background: #212121;
     height:calc(100% * (1/7) - 1px);
 }
-
-
-header>span{
-    align-self:center; 
-}
-
-.fa{
-    align-self:center;
-}
-
-.day{ 
-    height: 100%;
-    background-color: #e1f7d5;
-    border: 1px solid black;
+.header-container{
+    font-size: 2em;
+    display: flex;
     flex-grow: 1;
     flex-basis: 0;
-}
-
-
-.day-header{
-    background: #c9c9ff;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .week {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    height:calc(100% * (1/7) - 1px);
+    height:calc(100% * (1/7) - 1px);    
+}
+
+.day{ 
+    position: relative;
+    display: flex;
+    height: 100%;
+    background-color:#535353;
+    border: 1px solid black;
+    flex-grow: 1;
+    flex-basis: 0;
+    color: rgb(216, 77, 77);
+}
+
+.day-header{
+    background: #424242;
+    color: #D50000;
+}
+
+.tasks{
+    font-family: 'Lato', sans-serif;
+    height: 65%;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    font-size: 65%;
+    position: absolute;
+    top: 35px;
+    color: #0f0f0f;
+    background: rgb(216, 111, 111);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.fa{
+    align-self: center;
+}
+.fa-plus-square{
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+.fa-pencil-alt{
+    position: absolute;
+    top: 27px;
+    right: 10px;
+}
+
+.smaller-icon{
+    font-size: 90%;
 }

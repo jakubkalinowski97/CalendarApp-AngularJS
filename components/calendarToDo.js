@@ -4,28 +4,61 @@ function calendarCtrl($scope, $element, $attrs) {
     var ctrl = this;
     ctrl.day = moment();
     ctrl.selected = resetTime(moment());
-    ctrl.weeks = [];
     ctrl.month = ctrl.selected.clone();
-    var start = ctrl.selected.clone();
+    ctrl.dayTask;
+    ctrl.storedTasks=[];
 
+    var start = ctrl.selected.clone();
     start.date(1);
     resetTime(start.date(1));
+    buildMonth(start, ctrl.month);
 
-    buildMonth(ctrl.weeks,start, ctrl.month);
+    ctrl.next = function () {
+        var next = ctrl.month.clone();
+        resetTime(next.month(next.month() + 1).date(1));
+        ctrl.month.month(ctrl.month.month() + 1);
+        buildMonth(next, ctrl.month);
+    };
 
-    function resetTime(date) {
-        return date.hour(0).minute(0).second(0).millisecond(0);
+    ctrl.previous = function () {
+        var previous = ctrl.month.clone();
+        resetTime(previous.month(previous.month() - 1).date(1));
+        ctrl.month.month(ctrl.month.month() - 1);
+        buildMonth(previous, ctrl.month);
+    };
+
+    ctrl.getDay = function(day){
+        ctrl.dayTask = day;
+        //console.log(ctrl.dayTask.date);
     }
 
-    function buildMonth(weeks,start, month) {
+    ctrl.addTask = function(task){
+        ctrl.dayTask.tasks.push({
+            name: task,
+            date: ctrl.dayTask.date
+        });
+        ctrl.dayTask.date
+        ctrl.storedTasks.push({
+            name: task,
+            date: ctrl.dayTask.date
+        });
+        //console.log(ctrl.storedTasks);
+    };
+
+
+    function resetTime(date) {
+        return date.day(0).hour(0).minute(0).second(0).millisecond(0);
+    }
+
+    function buildMonth(start, month) {
+        ctrl.weeks = [];
         var done = false, date = start.clone(), monthIndex = date.month(), count = 0;
         while (!done) {
-            weeks.push({ days: buildWeek(date.clone(), month) });
+            ctrl.weeks.push({ days: buildWeek(date.clone(), month) });
             date.add(1, "w");
             done = count++ > 3 && monthIndex !== date.month();
             monthIndex = date.month();
         }
-        return weeks;
     }
 
     function buildWeek(date, month) {
@@ -34,8 +67,15 @@ function calendarCtrl($scope, $element, $attrs) {
             days.push({
                 name: date.format("dd"),
                 number: date.date(),
-                date: date
+                date: date,
+                tasks: []
             });
+            for(var j=0;j<ctrl.storedTasks.length;j++){
+                //console.log(ctrl.storedTasks[j].date,days[i].date);
+                if(ctrl.storedTasks[j].date.format("dddd, MMMM Do YYYY, h:mm:ss a")==days[i].date.format("dddd, MMMM Do YYYY, h:mm:ss a")){
+                    days[i].tasks.push(ctrl.storedTasks[j]);
+                }
+            }
             date = date.clone();
             date.add(1, "d");
         }
@@ -46,4 +86,6 @@ function calendarCtrl($scope, $element, $attrs) {
 app.component("calendarMonthly", {
     templateUrl: 'views/calendarMonthly.html',
     controller: calendarCtrl
-})
+});
+
+

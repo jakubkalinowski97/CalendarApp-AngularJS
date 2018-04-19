@@ -1,8 +1,10 @@
 <div class="calendar">
     <header>
-        <i class="fa fa-arrow-circle-left"></i>
-        <span>{{$ctrl.month.format("MMMM")}}</span>
-        <i ng-click="$ctrl.next()" class="fa fa-arrow-circle-right"></i>
+        <div class="header-container">
+            <i ng-click="$ctrl.previous()" class="fa fa-arrow-circle-left"></i>
+            <span>{{$ctrl.month.format("MMMM, YYYY")}}</span>
+            <i ng-click="$ctrl.next()" class="fa fa-arrow-circle-right"></i>
+        </div>
     </header>
     <div class="week">
         <span class="day day-header">Sunday</span>
@@ -14,8 +16,34 @@
         <span class="day day-header">Saturday</span>
     </div>
     <div class="week" ng-repeat="week in $ctrl.weeks">
-        <div class="day" ng-repeat="day in week.days">
-            <span>{{day.number}}</span>
+        <div ng-mousemove="showPlus=true" ng-mouseleave="showPlus=false" ng-init="showPlus=false" class="day" ng-repeat="day in week.days">
+            <span>{{day.number}}</span><br>
+                <ul class="tasks" ng-if="day.tasks.length > 0">
+                    <li ng-repeat="task in day.tasks">
+                        <span>{{task.name}}</span>
+                    </li>
+                </ul>
+            <div class="smaller-icon"><i class="fas fa-pencil-alt" ng-if="day.tasks.length > 0" ng-show="showPlus"></i></div>
+            <i ng-click="$ctrl.getDay(day)" ng-show="showPlus" data-toggle="modal" data-target="#exampleModal" class="fa fa-plus-square"></i>
+        </div>
+    </div>  
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <input type="" placeholder="Task..." ng-model="task"> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back!</button>
+                <button ng-click="$ctrl.addTask(task)" type="button" class="btn btn-primary" data-dismiss="modal">Add task</button>
+            </div>
         </div>
     </div>
 </div>
