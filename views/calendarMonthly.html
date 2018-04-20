@@ -16,17 +16,21 @@
         <span class="day day-header">Saturday</span>
     </div>
     <div class="week" ng-repeat="week in $ctrl.weeks">
-        <div ng-mousemove="showPlus=true" ng-mouseleave="showPlus=false" ng-init="showPlus=false" class="day" ng-repeat="day in week.days">
-            <span>{{day.number}}</span><br>
-                <ul class="tasks" ng-if="day.tasks.length > 0">
-                    <li ng-repeat="task in day.tasks">
-                        <span>{{task.name}}</span>
-                    </li>
-                </ul>
-            <div class="smaller-icon"><i class="fas fa-pencil-alt" ng-if="day.tasks.length > 0" ng-show="showPlus"></i></div>
-            <i ng-click="$ctrl.getDay(day)" ng-show="showPlus" data-toggle="modal" data-target="#exampleModal" class="fa fa-plus-square"></i>
+        <div class="day" ng-repeat="day in week.days">
+            <span>{{day.number}}</span>
+            <br>
+            <ul class="tasks" ng-if="day.tasks.length > 0">
+                <li ng-repeat="task in day.tasks">
+                    <span>{{task.name}}</span>
+                </li>
+            </ul>
+            <div class="icons-day">
+                <i class="fa fa-trash-alt" ng-if="day.tasks.length > 0"></i>
+                <i class="fa fa-pencil-alt" ng-if="day.tasks.length > 0"></i>
+                <i ng-click="$ctrl.getDay(day)"  data-toggle="modal" data-target="#exampleModal" class="fa fa-plus-square"></i>
+            </div>
         </div>
-    </div>  
+    </div>
 </div>
 
 
@@ -38,11 +42,11 @@
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
             </div>
             <div class="modal-body">
-                <input type="" placeholder="Task..." ng-model="task"> 
+                <input type="" placeholder="Task..." ng-model="$ctrl.task">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back!</button>
-                <button ng-click="$ctrl.addTask(task)" type="button" class="btn btn-primary" data-dismiss="modal">Add task</button>
+                <button ng-click="$ctrl.addTask($ctrl.task)" type="button" class="btn btn-primary" data-dismiss="modal">Add task</button>
             </div>
         </div>
     </div>

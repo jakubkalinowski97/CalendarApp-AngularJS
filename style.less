@@ -9,7 +9,7 @@ html {
 .calendar {
     font-family: 'Poiret One', cursive;
     color: #D50000;
-    height: 800px;
+    height: 700px;
     width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -30,6 +30,7 @@ header{
     justify-content: space-between;
     margin-left: 15%;
     margin-right: 15%;
+    margin-top: 20px;
 }
 
 .week {
@@ -57,7 +58,7 @@ header{
 
 .tasks{
     font-family: 'Lato', sans-serif;
-    height: 65%;
+    height: 60%;
     width: 90%;
     left: 5%;
     right: 5%;
@@ -68,22 +69,40 @@ header{
     background: rgb(216, 111, 111);
     border-radius: 5px;
     padding: 5px;
+    list-style: none;
+}
+
+.day:hover .tasks{
+    height: auto;
+    min-height: 60%;
+    z-index: 5;
+}
+
+
+.icons-day{
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: flex-end;
+    top: 4px;
+    right: 10px;
+    opacity: 0;
+    transition: 0.3s;
+}
+.day:hover .icons-day{
+    opacity: 1;
 }
 
 .fa{
     align-self: center;
-}
-.fa-plus-square{
-    position: absolute;
-    top: 4px;
-    right: 10px;
-}
-.fa-pencil-alt{
-    position: absolute;
-    top: 27px;
-    right: 10px;
+    padding-left: 5px;
 }
 
-.smaller-icon{
-    font-size: 90%;
+.fa-plus-square{
+}
+.fa-pencil-alt{
+    transform: scale(0.83);
+}
+.fa-trash-alt{
+    transform: scale(0.85);
 }

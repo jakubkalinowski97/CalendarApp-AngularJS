@@ -7,6 +7,7 @@ function calendarCtrl($scope, $element, $attrs) {
     ctrl.month = ctrl.selected.clone();
     ctrl.dayTask;
     ctrl.storedTasks=[];
+    ctrl.task;
 
     var start = ctrl.selected.clone();
     start.date(1);
@@ -42,9 +43,17 @@ function calendarCtrl($scope, $element, $attrs) {
             name: task,
             date: ctrl.dayTask.date
         });
+        ctrl.task = "";
         //console.log(ctrl.storedTasks);
     };
 
+    ctrl.roll = "noRollUp";
+    ctrl.rollUpTasks = function(){
+        if(ctrl.roll === "noRollUp")
+            ctrl.roll = "rollUp";
+        else
+            ctrl.roll = "noRollUp";
+    }
 
     function resetTime(date) {
         return date.day(0).hour(0).minute(0).second(0).millisecond(0);
