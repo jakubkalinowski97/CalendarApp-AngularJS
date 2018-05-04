@@ -7,7 +7,11 @@ function calendarCtrl($scope, $element, $attrs) {
     ctrl.month = ctrl.selected.clone();
     ctrl.dayTask;
     ctrl.storedTasks=[];
-    ctrl.task;
+    ctrl.task = {name: "", people: "", begTime: "", endTime: ""};
+    ctrl.iterator = 0;
+    // ctrl.task = {name: "", people: "", begDate: "", begTime: "", endDate: "", endTime: ""};
+    ctrl.people;
+    $scope.options = ['Birthday', 'Meeting', 'Trip','Date' ,'Other'];
 
     var start = ctrl.selected.clone();
     start.date(1);
@@ -30,21 +34,56 @@ function calendarCtrl($scope, $element, $attrs) {
 
     ctrl.getDay = function(day){
         ctrl.dayTask = day;
-        //console.log(ctrl.dayTask.date);
+        // ctrl.task.begDate = day.clone;
+        ctrl.task.begDate = day.date.toDate();
+        ctrl.task.endDate = day.date.toDate();
+        // ctrl.task.begTime = moment().toDate();
+        console.log(ctrl.dayTask.date);
+        console.log(day);
     }
+
+    ctrl.getDay2 = function(day){
+        ctrl.dayTask = day;
+    }
+
+    ctrl.deleteTask = function(task, day){
+        // console.log(task.id);
+        // ctrl.getDay2(task.date);
+        // ctrl.dayTask = day;
+        for(var i = 0; i < ctrl.dayTask.tasks.length; i++) {
+            if(ctrl.dayTask.tasks[i].id == task.id) {
+                ctrl.dayTask.tasks.splice(i, 1);
+                break;
+            }
+        }
+        for(var i = 0; i < ctrl.storedTasks.length; i++) {
+            if(ctrl.storedTasks[i].id == task.id) {
+                ctrl.storedTasks.splice(i, 1);
+                break;
+            }
+        }
+         console.log("ctrl.dayTask.tasks: "+ctrl.dayTask.tasks.length);
+         console.log("ctrl.storedTasks: "+ctrl.storedTasks.length);
+    };
 
     ctrl.addTask = function(task){
         ctrl.dayTask.tasks.push({
-            name: task,
+            id: ctrl.iterator,
+            name: task.name,
+            people: task.people,
             date: ctrl.dayTask.date
         });
         ctrl.dayTask.date
         ctrl.storedTasks.push({
-            name: task,
+            id: ctrl.iterator,
+            name: task.name,
+            people: task.people,
             date: ctrl.dayTask.date
         });
-        ctrl.task = "";
-        //console.log(ctrl.storedTasks);
+        ctrl.task = {name: "", people: "", begDate: "", begTime: "", endDate: "", endTime: ""};
+        ctrl.people = "";
+        ctrl.iterator++;
+        console.log(ctrl.storedTasks);
     };
 
     ctrl.roll = "noRollUp";
@@ -80,7 +119,7 @@ function calendarCtrl($scope, $element, $attrs) {
                 tasks: []
             });
             for(var j=0;j<ctrl.storedTasks.length;j++){
-                //console.log(ctrl.storedTasks[j].date,days[i].date);
+                console.log(ctrl.storedTasks[j].date,days[i].date);
                 if(ctrl.storedTasks[j].date.format("dddd, MMMM Do YYYY, h:mm:ss a")==days[i].date.format("dddd, MMMM Do YYYY, h:mm:ss a")){
                     days[i].tasks.push(ctrl.storedTasks[j]);
                 }
@@ -96,5 +135,7 @@ app.component("calendarMonthly", {
     templateUrl: 'views/calendarMonthly.html',
     controller: calendarCtrl
 });
+
+
 
 
