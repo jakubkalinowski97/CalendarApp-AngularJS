@@ -46,9 +46,9 @@
             {{hour.date}}
             <ul>
                 <li ng-repeat="task in $ctrl.today.tasks">
-
+                    {{task.date}}
                     <div ng-if="task.begTime==hour.date"></div>
-                    {{task.name}}
+
                 </li>
             </ul>
         </li>
