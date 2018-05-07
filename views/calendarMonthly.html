@@ -20,12 +20,15 @@
         <div class="day" ng-repeat="day in week.days">
             <span>{{day.number}}</span>
             <br>
-            <ul ng-click="$ctrl.todayIs(day)" class="tasks" ng-if="day.tasks.length > 0">
+            <ul ng-click="$ctrl.todayIs(day)" class="tasks"  ng-if="day.tasks.length > 0">
                 <li ng-repeat="task in day.tasks | filter: $ctrl.search">
-                    <i ng-click="$ctrl.getTask(task)"  data-toggle="modal" data-target="#exampleModal2"
-                       class="fa fa-pencil-alt"></i>
-                    <i class="fa fa-trash-alt" ng-click="$ctrl.deleteTask(task, day)"></i><br>
-                    <span>{{task.name}}</span><br><i ng-class="{{task.category.icon}}"></i>
+
+                    <div class="task">
+                        <span >{{task.name}}</span><br>
+                        <i ng-class="{{task.category.icon}}"></i>
+                        <i ng-click="$ctrl.getTask(task)"  data-toggle="modal" data-target="#exampleModal2"
+                           class="fa fa-pencil-alt"></i>
+                        <i class="fa fa-trash-alt" ng-click="$ctrl.deleteTask(task, day)"></i><br></div>
                     <hr ng-if="day.tasks.lenght > 1">
                 </li>
             </ul>
@@ -53,7 +56,7 @@
 </div>
 <div class="searching">
     <label class="filter" for="search">Filtruj osoby: </label><input id="search" type="text" ng-model="$ctrl.search.people"> <br>
-    <i class="fa fa-eye" ng-click=".category.name=''"></i>
+    <i class="fa fa-eye" ng-click="$ctrl.search.category.name=''"></i>
     <i class="{{option.icon}}" ng-repeat="option in $ctrl.options" ng-click="$ctrl.search.category.name=option.name"></i>
     Filtrowanie kategorii: {{$ctrl.search.category.name}}
 </div>

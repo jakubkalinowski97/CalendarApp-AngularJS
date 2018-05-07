@@ -21,7 +21,8 @@ function calendarCtrl($scope, $element, $attrs) {
         date: moment(),
         tasks: [],
         hours: buildDay(resetTime(moment()))
-    };ctrl.search;
+    };
+    ctrl.search;
 
     var start = ctrl.selected.clone();
     start.date(1);
