@@ -143,16 +143,9 @@ function calendarCtrl($scope, $element, $attrs) {
                 hours: buildDay(date)
             });
             for(var j=0;j<ctrl.storedTasks.length;j++){
-                console.log(ctrl.storedTasks[j].date,days[i].date);
+                //console.log(ctrl.storedTasks[j].date,days[i].date);
                 if(ctrl.storedTasks[j].date.format("dddd, MMMM Do YYYY")==days[i].date.format("dddd, MMMM Do YYYY")){
                     days[i].tasks.push(ctrl.storedTasks[j]);
-                    //console.log(days[i].date);
-                    for(let k = 0;k < 24;k++){
-                        if(ctrl.storedTasks[j].begTime==days[i].hours[k].date.format("kk")){
-                            days[i].hours[k].tasks.push(ctrl.storedTasks[j]);
-                            console.log("Przypisano do godziny.");
-                        }
-                    }
                     console.log("Przypisano do dnia.");
                 }
             }
@@ -169,7 +162,6 @@ function calendarCtrl($scope, $element, $attrs) {
             hours.push({
                 name: date.format("D M YYYY kk:mm"),
                 date: date,
-                tasks: []
             });
             date = date.clone();
             date.add(1, "h");

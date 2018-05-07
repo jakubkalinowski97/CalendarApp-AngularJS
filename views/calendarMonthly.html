@@ -5,8 +5,6 @@
         <div class="header-container">
             <i ng-click="$ctrl.previous()" class="fa fa-arrow-circle-left"></i>
             <span>{{$ctrl.month.format("MMMM, YYYY")}}</span>
-            <label  for="search">Filtruj osoby: </label>
-            <input id="search" type="text" ng-model="search.people">
             <i ng-click="$ctrl.next()" class="fa fa-arrow-circle-right"></i>
         </div>
     </header>
@@ -25,7 +23,8 @@
             <br>
             <ul ng-click="$ctrl.todayIs(day)" class="tasks" ng-if="day.tasks.length > 0">
                 <li ng-repeat="task in day.tasks | filter:  search">
-                    <i ng-click="$ctrl.getTask(task)"  data-toggle="modal" data-target="#exampleModal2" class="fa fa-pencil-alt"></i>
+                    <i ng-click="$ctrl.getTask(task)"  data-toggle="modal" data-target="#exampleModal2"
+                       class="fa fa-pencil-alt"></i>
                     <i class="fa fa-trash-alt" ng-click="$ctrl.deleteTask(task, day)"></i><br>
                     <span>{{task.name}}</span><br>
                     <hr ng-if="day.tasks.lenght > 1">
@@ -44,9 +43,11 @@
 <div class="daily-calendar">
     <ul>
         <li ng-repeat="hour in $ctrl.today.hours">
-            {{hour.name}}
+            {{hour.date}}
             <ul>
                 <li ng-repeat="task in $ctrl.today.tasks">
+
+                    <div ng-if="task.begTime==hour.date"></div>
                     {{task.name}}
                 </li>
             </ul>
@@ -71,7 +72,8 @@
                 </div>
                 <div class="modal-body">
                     <label for="name">Task: </label>
-                    <input id="name" type="text" placeholder="Task description..." ng-model="$ctrl.task.name" required><br>
+                    <input id="name" type="text" placeholder="Task description..." ng-model="$ctrl.task.name" required>
+                    <br>
                     <label for="people">People: </label>
                     <input id="people" type="text" placeholder="Add peope..." ng-model="$ctrl.task.people"><br>
                     <label for="category">Category</label>
@@ -87,12 +89,16 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back!</button>
-                    <button ng-click="$ctrl.addTask($ctrl.task)" type="button" class="btn btn-primary" data-dismiss="modal">Add task</button>
+                    <button ng-click="$ctrl.addTask($ctrl.task)" type="button" class="btn btn-primary"
+                            data-dismiss="modal">Add task</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<!-- Editing tasks -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
