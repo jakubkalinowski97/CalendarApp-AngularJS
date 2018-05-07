@@ -21,17 +21,15 @@
             <span>{{day.number}}</span>
             <br>
             <ul ng-click="$ctrl.todayIs(day)" class="tasks" ng-if="day.tasks.length > 0">
-                <li ng-repeat="task in day.tasks | filter:  search">
+                <li ng-repeat="task in day.tasks | filter: $ctrl.search">
                     <i ng-click="$ctrl.getTask(task)"  data-toggle="modal" data-target="#exampleModal2"
                        class="fa fa-pencil-alt"></i>
                     <i class="fa fa-trash-alt" ng-click="$ctrl.deleteTask(task, day)"></i><br>
-                    <span>{{task.name}}</span><br><i class="{{ctrl.options.icon}}"></i>
+                    <span>{{task.name}}</span><br><i ng-class="{{task.category.icon}}"></i>
                     <hr ng-if="day.tasks.lenght > 1">
                 </li>
             </ul>
             <div class="icons-day">
-                <!-- <i class="fa fa-pencil-alt" ng-if="day.tasks.length > 0"></i> -->
-                <!-- <i class="fa fa-trash-alt" ng-if="day.tasks.length > 0"></i> -->
                 <i class="fas fa-list-ul" ng-click="$ctrl.todayIs(day)"></i>
                 <i ng-click="$ctrl.getDay(day)"  data-toggle="modal" data-target="#Modal" class="fa fa-plus-square"></i>
             </div>
@@ -53,11 +51,15 @@
     </ul>
 </div>
 </div>
-<label class="filter" for="search">Filtruj osoby: </label><input id="search" type="text" ng-model="search">
+<div class="searching">
+    <label class="filter" for="search">Filtruj osoby: </label><input id="search" type="text" ng-model="$ctrl.search.people"> <br>
+    <i class="fa fa-eye" ng-click=".category.name=''"></i>
+    <i class="{{option.icon}}" ng-repeat="option in $ctrl.options" ng-click="$ctrl.search.category.name=option.name"></i>
+    Filtrowanie kategorii: {{$ctrl.search.category.name}}
+</div>
 
 
 <!-- Adding tasks -->
-
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
