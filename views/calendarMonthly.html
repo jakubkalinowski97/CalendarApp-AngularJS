@@ -1,10 +1,10 @@
+<label class="filter" for="search">Filtruj osoby: <input id="search" type="text" ng-model="search"> </label>
+
 <div class="calendar">
     <header>
         <div class="header-container">
             <i ng-click="$ctrl.previous()" class="fa fa-arrow-circle-left"></i>
             <span>{{$ctrl.month.format("MMMM, YYYY")}}</span>
-            <label  for="search">Filtruj osoby: </label>
-            <input id="search" type="text" ng-model="search">
             <i ng-click="$ctrl.next()" class="fa fa-arrow-circle-right"></i>
         </div>
     </header>
@@ -21,7 +21,7 @@
         <div class="day" ng-repeat="day in week.days">
             <span>{{day.number}}</span>
             <br>
-            <ul class="tasks" ng-if="day.tasks.length > 0">
+            <ul ng-click="$ctrl.todayIs(day)" class="tasks" ng-if="day.tasks.length > 0">
                 <li ng-repeat="task in day.tasks | filter:  search">
                     <i class="fa fa-pencil-alt"></i>
                     <i class="fa fa-trash-alt" ng-click="$ctrl.deleteTask(task)"></i><br>
@@ -32,16 +32,35 @@
             <div class="icons-day">
                 <!-- <i class="fa fa-pencil-alt" ng-if="day.tasks.length > 0"></i> -->
                 <!-- <i class="fa fa-trash-alt" ng-if="day.tasks.length > 0"></i> -->
-                <i ng-click="$ctrl.getDay(day)"  data-toggle="modal" data-target="#exampleModal" class="fa fa-plus-square"></i>
+                <i class="fas fa-list-ul" ng-click="$ctrl.todayIs(day)"></i>
+                <i ng-click="$ctrl.getDay(day)"  data-toggle="modal" data-target="#Modal" class="fa fa-plus-square"></i>
                 <i class="fa fa-lock" ng-click="$ctrl.getDay2(day)"></i>
             </div>
         </div>
     </div>
 </div>
+<div class="daily-calendar">
+    <ul>
+        <li ng-repeat="hour in $ctrl.today.hours">
+            {{hour.name}}
+            <ul>
+                <li ng-repeat="task in $ctrl.today.tasks">
+                    {{task.name}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+
+<!-- Adding tasks -->
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -53,15 +72,15 @@
                 <label for="people">People: </label>
                 <input id="people" type="" placeholder="Add peope..." ng-model="$ctrl.task.people"><br>
                 <label for="category">Category</label>
-                <select name="repeatSelect" id="repeatSelect" ng-model="task.category">
-                    <option ng-repeat="option in $scope.options" value="{{option}}">{{option}}</option>
+                <select ng-init="task.category = options[0]" name="repeatSelect" id="repeatSelect" ng-model="task.category">
+                    <option ng-repeat="option in $ctrl.options" value="{{option}}">{{option}}</option>
                 </select><br>
                 <label for="begDate">Beginning time: </label>
                 <!-- <input id="begDate" type="date" ng-model="$ctrl.task.begDate"> -->
-                <input id="bedTime" type="time" ng-model="$ctrl.task.begTime"><br>
+                <input id="bedTime" type="time" ng-model="$ctrl.task.begTime" value="12:00" ><br>
                 <label id="endDate">End time: </label>
                 <!-- <input id="endDate" type="date" ng-model="$ctrl.task.endDate"> -->
-                <input id="endTime" type="time" ng-model="$ctrl.task.endTime">
+                <input id="endTime" type="time" ng-model="$ctrl.task.endTime" value="12:00">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back!</button>
