@@ -5,20 +5,49 @@
 html {
     font-size: 20px;
 }
+.container{
+    display: flex;
+    flex-direction: row;
+}
 
 .calendar {
     font-family: 'Poiret One', cursive;
     color: #D50000;
     height: 700px;
-    width: 50vw;
+    width: 700px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
 }
 .daily-calendar{
-  border: #212121;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poiret One';
+    font-size: 90%;
+    width: 400px;
+    height: 693px;
+    border: 1px solid #212121;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+
 }
 
+.hour{
+    height: 690px/24;
+    border-bottom: 1px solid #212121;
+    color: rgb(216, 77, 77);
+    padding-left: 10px ;
+    background-color:#535353;
+}
+.hour:last-child{
+    border-bottom: none;
+}
+.hour-task{
+    position: relative;
+    left: 20%;
+    top: 5px;
+}
 header{
     display: flex;
     border: 1px solid black;
@@ -110,4 +139,9 @@ header{
 .fa-trash-alt{
     transform: scale(0.85);
 }
+
+ul{
+    list-style: none;
+}
+
 ul:empty{ display: none; }

@@ -1,5 +1,5 @@
 <label class="filter" for="search">Filtruj osoby: <input id="search" type="text" ng-model="search"> </label>
-
+<div class="container">
 <div class="calendar">
     <header>
         <div class="header-container">
@@ -42,19 +42,19 @@
 </div>
 <div class="daily-calendar">
     <ul>
-        <li ng-repeat="hour in $ctrl.today.hours">
-            {{hour.date}}
+        <li class="hour" ng-repeat="hour in $ctrl.today.hours">
+            {{hour.name}}
             <ul>
                 <li ng-repeat="task in $ctrl.today.tasks">
-                    {{task.date}}
-                    <div ng-if="task.begTime==hour.date"></div>
-
+                    <div ng-if="task.begTime.format('D MM YY kk')==hour.date.format('D MM YY kk')">
+                        <span class="hour-task">{{task.name}}</span>
+                    </div>
                 </li>
             </ul>
         </li>
     </ul>
 </div>
-
+</div>
 
 
 

@@ -10,7 +10,7 @@ function calendarCtrl($scope, $element, $attrs) {
     ctrl.task = {name: "", people: "", begTime: "", endTime: ""};
     ctrl.iterator = 0;
     ctrl.people;
-    ctrl.options = ['Birthday', 'Meeting', 'Trip','Date' ,'Other'];
+    ctrl.options = ['Birthday', 'Meeting', 'Trip', 'Date', 'Other'];
     ctrl.today;
 
     var start = ctrl.selected.clone();
@@ -74,16 +74,16 @@ function calendarCtrl($scope, $element, $attrs) {
             name: task.name,
             people: task.people,
             date: ctrl.dayTask.date,
-            begTime: ctrl.dayTask.date.hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
-            endTime: ctrl.dayTask.date.hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
+            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
+            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
         });
         ctrl.storedTasks.push({
             id: ctrl.iterator,
             name: task.name,
             people: task.people,
             date: ctrl.dayTask.date,
-            begTime: ctrl.dayTask.date.hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
-            endTime: ctrl.dayTask.date.hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
+            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
+            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
         });
         ctrl.clearTask();
         ctrl.iterator++;
@@ -146,7 +146,6 @@ function calendarCtrl($scope, $element, $attrs) {
                 //console.log(ctrl.storedTasks[j].date,days[i].date);
                 if(ctrl.storedTasks[j].date.format("dddd, MMMM Do YYYY")==days[i].date.format("dddd, MMMM Do YYYY")){
                     days[i].tasks.push(ctrl.storedTasks[j]);
-                    console.log("Przypisano do dnia.");
                 }
             }
             date = date.clone();
@@ -160,7 +159,7 @@ function calendarCtrl($scope, $element, $attrs) {
         var hours = [];
         for(let i = 0; i < 24; i++){
             hours.push({
-                name: date.format("D M YYYY kk:mm"),
+                name: date.format("kk:mm"),
                 date: date,
             });
             date = date.clone();
