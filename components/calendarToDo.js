@@ -10,7 +10,12 @@ function calendarCtrl($scope, $element, $attrs) {
     ctrl.task = {name: "", people: "", begTime: "", endTime: ""};
     ctrl.iterator = 0;
     ctrl.people;
-    ctrl.options = ['Birthday', 'Meeting', 'Trip', 'Date', 'Other'];
+    ctrl.options = [
+        {name: 'Birthday', icon: "'fa fa-birthday-cake'"}, 
+        {name: 'Meeting', icon: "'fa fa-users'"}, 
+        {name: 'Trip', icon: "'fa fa-plane'"}, 
+        {name: 'Date', icon: "'fa fa-heart'"}, 
+        {name: 'Other', icon: "'fa fa-calendar-alt'"}];
     ctrl.today;
 
     var start = ctrl.selected.clone();
@@ -77,6 +82,7 @@ function calendarCtrl($scope, $element, $attrs) {
             begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
             endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
         });
+        // console.log(ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()));
         ctrl.storedTasks.push({
             id: ctrl.iterator,
             name: task.name,
@@ -92,7 +98,7 @@ function calendarCtrl($scope, $element, $attrs) {
 
 
     ctrl.clearTask = function(){
-        ctrl.task = {name: "", people: "", begDate: "", begTime: "", endDate: "", endTime: "", category:""};
+        ctrl.task = {name: "", people: "", date: "", begTime: "", endTime: "", category:""};
     }
 
 
