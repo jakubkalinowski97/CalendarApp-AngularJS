@@ -25,7 +25,7 @@
                     <i ng-click="$ctrl.getTask(task)"  data-toggle="modal" data-target="#exampleModal2"
                        class="fa fa-pencil-alt"></i>
                     <i class="fa fa-trash-alt" ng-click="$ctrl.deleteTask(task, day)"></i><br>
-                    <span>{{task.name}}</span><br><i class="{{$ctrl.task.category.icon}}"></i>
+                    <span>{{task.name}}</span><br><i class="{{ctrl.options.icon}}"></i>
                     <hr ng-if="day.tasks.lenght > 1">
                 </li>
             </ul>
@@ -41,11 +41,11 @@
 <div class="daily-calendar">
     <ul>
         <li class="hour" ng-repeat="hour in $ctrl.today.hours">
-            {{hour.name}}
+            <span>{{hour.name}}</span>
             <ul>
                 <li ng-repeat="task in $ctrl.today.tasks">
                     <div ng-if="task.begTime.format('D MM YY kk')==hour.date.format('D MM YY kk')">
-                        <span class="hour-task">{{task.name}}</span>
+                        <div class="hour-task"><span>{{task.name}}</span></div>
                     </div>
                 </li>
             </ul>
@@ -53,7 +53,7 @@
     </ul>
 </div>
 </div>
-<label class="filter" for="search">Filtruj osoby: </label><input id="search" type="text" ng-model="search"> 
+<label class="filter" for="search">Filtruj osoby: </label><input id="search" type="text" ng-model="search">
 
 
 <!-- Adding tasks -->
@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-body">
                     <label for="name">Task: </label>
-                    <input id="name" type="text" placeholder="Task description..." ng-model="$ctrl.task.name" required>
+                    <input id="name" type="text" placeholder="Task description..." ng-model="$ctrl.task.name">
                     <br>
                     <label for="people">People: </label>
                     <input id="people" type="text" placeholder="Add peope..." ng-model="$ctrl.task.people"><br>
@@ -77,14 +77,16 @@
                     </select><br>
                     <label for="begDate">Beginning time: </label>
                     <!-- <input id="begDate" type="date" ng-model="$ctrl.task.begDate"> -->
-                    <input id="begTime" type="time" ng-model="$ctrl.task.begTime"><br>
+                    <input id="begTime" type="time" ng-model="$ctrl.task.begTime" ><br>
                     <label id="endDate">End time: </label>
                     <!-- <input id="endDate" type="date" ng-model="$ctrl.task.endDate"> -->
                     <input id="endTime" type="time" ng-model="$ctrl.task.endTime">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back!</button>
-                    <button ng-click="$ctrl.addTask($ctrl.task)" type="button" class="btn btn-primary"
+                    <button ng-disabled="!(($ctrl.task.name)&&($ctrl.task.people)&&($ctrl.task.category)&&
+                    ($ctrl.task.begTime)&&($ctrl.task.endTime))" ng-click="$ctrl.addTask($ctrl.task)"
+                            type="button" class="btn btn-primary"
                             data-dismiss="modal">Add task</button>
                 </div>
             </form>
@@ -110,15 +112,11 @@
                     <option ng-repeat="option in $ctrl.options" value="{{option}}" ng-if="$ctrl.task.category != option">{{option.name}}</option>
                     <option ng-repeat="option in $ctrl.options" value="{{option}}" ng-if="$ctrl.task.category == option" selected="selected">{{option}}</option>
                 </select><br>
-                <label for="begDate">Beginning time: </label>
-                <!-- <input id="begDate" type="date" ng-model="$ctrl.task.begDate"> -->
-                <input id="bedTime" type="time" ng-model="$ctrl.task.begTime"><br>
-                <label id="endDate">End time: </label>
-                <!-- <input id="endDate" type="date" ng-model="$ctrl.task.endDate"> -->
-                <input id="endTime" type="time" ng-model="$ctrl.task.endTime">
             </div>
             <div class="modal-footer">
-                <button ng-click="$ctrl.editTask($ctrl.task)" type="button" class="btn btn-primary" data-dismiss="modal">Edit task</button>
+                <button ng-disabled="!(($ctrl.task.name)&&($ctrl.task.people)&&($ctrl.task.category))"
+                 ng-click="$ctrl.editTask($ctrl.task)" type="button" class="btn btn-primary"
+                        data-dismiss="modal">Edit task</button>
             </div>
         </div>
     </div>

@@ -11,12 +11,18 @@ function calendarCtrl($scope, $element, $attrs) {
     ctrl.iterator = 0;
     ctrl.people;
     ctrl.options = [
-        {name: 'Birthday', icon: "'fa fa-birthday-cake'"}, 
-        {name: 'Meeting', icon: "'fa fa-users'"}, 
-        {name: 'Trip', icon: "'fa fa-plane'"}, 
-        {name: 'Date', icon: "'fa fa-heart'"}, 
+        {name: 'Birthday', icon: "'fa fa-birthday-cake'"},
+        {name: 'Meeting', icon: "'fa fa-users'"},
+        {name: 'Trip', icon: "'fa fa-plane'"},
+        {name: 'Date', icon: "'fa fa-heart'"},
         {name: 'Other', icon: "'fa fa-calendar-alt'"}];
-    ctrl.today;
+    ctrl.today = {
+        name: moment().format("dd"),
+        number: moment().date(),
+        date: moment(),
+        tasks: [],
+        hours: buildDay(resetTime(moment()))
+    };
 
     var start = ctrl.selected.clone();
     start.date(1);
@@ -79,8 +85,8 @@ function calendarCtrl($scope, $element, $attrs) {
             name: task.name,
             people: task.people,
             date: ctrl.dayTask.date,
-            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
-            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
+            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()-1).minute(task.begTime.getMinutes()),
+            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()-1).minute(task.endTime.getMinutes()),
         });
         // console.log(ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()));
         ctrl.storedTasks.push({
@@ -88,8 +94,8 @@ function calendarCtrl($scope, $element, $attrs) {
             name: task.name,
             people: task.people,
             date: ctrl.dayTask.date,
-            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
-            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
+            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()-1).minute(task.begTime.getMinutes()),
+            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()-1).minute(task.endTime.getMinutes()),
         });
         ctrl.clearTask();
         ctrl.iterator++;
@@ -109,7 +115,7 @@ function calendarCtrl($scope, $element, $attrs) {
     ctrl.editTask = function(task){
         for(var i = 0; i < ctrl.dayTask.tasks.length; i++) {
             if(ctrl.dayTask.tasks[i].id == task.id) {
-                console.log("id "+ctrl.dayTask.tasks[i].id+" id2: "+task.id);
+                //console.log("id "+ctrl.dayTask.tasks[i].id+" id2: "+task.id);
                 ctrl.dayTask.tasks[i] = task;
                 break;
             }
@@ -179,7 +185,3 @@ app.component("calendarMonthly", {
     templateUrl: 'views/calendarMonthly.html',
     controller: calendarCtrl
 });
-
-
-
-

@@ -6,15 +6,17 @@ html {
     font-size: 20px;
 }
 .container{
+    position: relative;
     display: flex;
     flex-direction: row;
+    background: #3A3B35;
 }
 
 .calendar {
     font-family: 'Poiret One', cursive;
     color: #D50000;
     height: 700px;
-    width: 700px;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
@@ -22,19 +24,15 @@ html {
 .daily-calendar{
     display: flex;
     flex-direction: column;
-    font-family: 'Poiret One';
-    font-size: 90%;
+    font-family: 'Cutive Mono', monospace;
     width: 400px;
-    height: 693px;
-    border: 1px solid #212121;
-    margin-left: auto;
+    margin-left: 10px;
     margin-right: auto;
     margin-top: 5%;
-
 }
 
 .hour{
-    height: 690px/24;
+    height: 693px/24;
     border-bottom: 1px solid #212121;
     color: rgb(216, 77, 77);
     padding-left: 10px ;
@@ -44,9 +42,9 @@ html {
     border-bottom: none;
 }
 .hour-task{
+    font-family: 'Lato Light';
     position: relative;
     left: 20%;
-    top: 5px;
 }
 header{
     display: flex;
@@ -84,6 +82,9 @@ header{
     color: rgb(216, 77, 77);
 }
 
+.diffrentMonth{
+    color: blue;
+}
 .day-header{
     background: #424242;
     color: #D50000;
