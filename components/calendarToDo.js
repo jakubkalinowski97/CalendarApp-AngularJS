@@ -3,6 +3,9 @@ var app = angular.module("CalendarToDo", ['ngRoute']);
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+        when('/logo', {
+            templateUrl: 'views/logo.html',
+        }).
         when('/help', {
             templateUrl: 'views/help.html',
         }).
