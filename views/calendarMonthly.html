@@ -53,7 +53,7 @@
                     <input id="name" type="text" placeholder="Task description..." ng-model="$ctrl.task.name">
                     <br>
                     <label for="people">People: </label>
-                    <input id="people" type="text" placeholder="Add peope..." ng-model="$ctrl.task.people"><br>
+                    <input id="people" type="text" placeholder="Add peope..." ng-model="$ctrl.task.people" my-string><br>
                     <label for="category">Category</label>
                     <select name="repeatSelect" id="repeatSelect" ng-model="$ctrl.task.category">
                         <option ng-repeat="option in $ctrl.options" ng-init="option" ng-value="option">{{option.name}}</option>

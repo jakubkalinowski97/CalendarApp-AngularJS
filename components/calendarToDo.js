@@ -82,6 +82,10 @@ app.component("calendar", {
     templateUrl: 'views/calendar.html',
     controller: 'calendarCtrl'
 });
+app.component("authors", {
+    templateUrl: 'views/authors.html',
+    controller: 'authorsCtrl'
+});
 
 app.component("calendarDaily",{
     templateUrl: 'views/calendarDaily.html',
@@ -251,6 +255,12 @@ app.controller("calendarCtrl", function($scope, myService) {
 app.controller("dailyCtrl",['$scope', 'myService', function ($scope, myService) {
     var ctrl = this;
 }]);
+
+app.directive('myAuthors', function() {
+  return {
+    template: '<h2>Jakub Kalinowaski<br>Mateusz Bednarski</h2>'
+  };
+});
 
 
 
