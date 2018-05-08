@@ -194,10 +194,10 @@ app.controller("monthlyCtrl",['$scope', 'myService', function ($scope, myService
             people: task.people,
             date: ctrl.dayTask.date,
             category: task.category,
-            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()),
-            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()).minute(task.endTime.getMinutes()),
+            begTime: ctrl.dayTask.date.clone().hour(task.begTime.getHours()-1).minute(task.begTime.getMinutes()),
+            endTime: ctrl.dayTask.date.clone().hour(task.endTime.getHours()-1).minute(task.endTime.getMinutes()),
         });
-        // console.log(ctrl.dayTask.date.clone().hour(task.begTime.getHours()).minute(task.begTime.getMinutes()));
+        //console.log(ctrl.dayTask.date);
         myService.setStoredTasks(task,ctrl.dayTask);
         console.log(task);
         ctrl.clearTask();
