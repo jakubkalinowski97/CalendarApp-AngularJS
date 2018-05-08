@@ -82,10 +82,6 @@ app.component("calendar", {
     templateUrl: 'views/calendar.html',
     controller: 'calendarCtrl'
 });
-app.component("authors", {
-    templateUrl: 'views/authors.html',
-    controller: 'authorsCtrl'
-});
 
 app.component("calendarDaily",{
     templateUrl: 'views/calendarDaily.html',
