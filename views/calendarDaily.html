@@ -1,0 +1,14 @@
+<div class="daily-calendar">
+    <ul>
+        <li class="hour" ng-repeat="hour in $ctrl.today.hours">
+            <span>{{hour.name}}</span>
+            <ul>
+                <li ng-repeat="task in $ctrl.today.tasks">
+                    <div ng-if="task.begTime.format('D MM YY kk')==hour.date.format('D MM YY kk')">
+                        <div class="hour-task"><span>{{task.name}}</span></div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
