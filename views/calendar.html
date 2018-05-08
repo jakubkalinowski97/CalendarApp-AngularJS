@@ -1,0 +1,22 @@
+<div class="wrap">
+    <calendar-monthly today="$ctrl.today" search="$ctrl.search"></calendar-monthly>
+    <calendar-daily today="$ctrl.today"></calendar-daily>
+    <div class="searching">
+        <label class="filter" for="search">Filtruj osoby:<input id="search" type="text" ng-model="$ctrl.search.people"> </label> <br>
+        <div class="searching-icons">
+        <i class="icon fa fa-eye" ng-click="$ctrl.search.category.name=''"></i>
+        <i class=" icon {{option.icon}}" ng-repeat="option in $ctrl.options" ng-click="$ctrl.search.category.name=option.name"></i>
+        </div>
+        <span>Filtrowanie kategorii: {{$ctrl.search.category.name}}</span>
+        <br><br>
+        <a href="#!authors">Autorzy</a>
+        <a href="#!help">Pomoc</a>
+
+        <div class="ng-view"></div>
+        
+    </div>
+</div>
+
+
+
+

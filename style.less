@@ -5,35 +5,89 @@
 html {
     font-size: 20px;
 }
-.container{
-    position: relative;
+
+.wrap{
     display: flex;
     flex-direction: row;
-    background: #3A3B35;
-    height: auto;
+    justify-content: space-around;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a:link, a:visited{
+    color:rgb(216, 77, 77);
+}
+
+a:link:hover{
+    color: #D50000;
+}
+
+.help{
+    font-size: 80%;
 }
 
 .calendar {
     font-family: 'Poiret One', cursive;
     color: #D50000;
+    width: 700px;
     height: 700px;
-    width: 800px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
 }
 .daily-calendar{
     display: flex;
     flex-direction: column;
     font-family: 'Cutive Mono', monospace;
-    width: 400px;
+    height: 700px;
+    width: 450px;
     margin-left: 10px;
     margin-right: auto;
-    margin-top: 5%;
+}
+
+.searching{
+    padding: 10px;
+    color: rgb(216, 77, 77);
+    background-color:#535353;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Cutive Mono', monospace;
+    height: 693px;
+    width: 450px;
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+.searching-icons{
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.logo{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 300px;
+    opacity: 0.2;
+    transform: translate(-50%,0);
+    left: 50%;
+}
+
+.icon{
+    transition: 0.1s;
+}
+
+.icon:hover{
+    color: #D50000;
 }
 
 .hour{
-    height: 693px/24;
+    height: calc((693px)/24);
     border-bottom: 1px solid #212121;
     color: rgb(216, 77, 77);
     padding-left: 10px ;
@@ -127,6 +181,8 @@ header{
     opacity: 0;
     transition: 0.3s;
 }
+
+
 .day:hover .icons-day{
     opacity: 1;
 }
