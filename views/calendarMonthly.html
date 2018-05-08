@@ -20,7 +20,7 @@
             <span>{{day.number}}</span>
             <br>
             <ul ng-click="$ctrl.todayIs(day)" class="tasks"  ng-if="day.tasks.length > 0">
-                <li ng-repeat="task in day.tasks | filter: $ctrl.search">
+                <li ng-repeat="task in day.tasks | filter: $ctrl.search | orderBy: 'begTime'">
 
                     <div class="task">
                         <span >{{task.name}}</span><br>
