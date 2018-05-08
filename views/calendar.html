@@ -6,7 +6,7 @@
         <span>Filter category: {{$ctrl.search.category.name}}</span>
         <div class="searching-icons">
         <i class="icon fa fa-eye" ng-click="$ctrl.search.category.name=''"></i>
-        <i class=" icon {{option.icon}}" ng-repeat="option in $ctrl.options" ng-click="$ctrl.search.category.name=option.name"></i>
+        <i class="{{option.icon}}" ng-repeat="option in $ctrl.options" ng-click="$ctrl.search.category.name=option.name"></i>
         </div>
         <br><br>
         <a href="#!authors">Authors</a>
